@@ -1,0 +1,100 @@
+# 数据源配置
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        druid:
+            # 主库数据源
+            master:
+                url: jdbc:mysql://localhost:3306/ry?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+                username: root
+                password: 123456
+            # 从库数据源
+            slave:
+                # 从数据源开关/默认关闭
+                enabled: false
+                url: 
+                username: 
+                password: 
+            # 初始连接数
+            initialSize: 5
+            # 最小连接池数量
+            minIdle: 10
+            # 最大连接池数量
+            maxActive: 20
+            # 配置获取连接等待超时的时间
+            maxWait: 60000
+            # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+            timeBetweenEvictionRunsMillis: 60000
+            # 配置一个连接在池中最小生存的时间，单位是毫秒
+            minEvictableIdleTimeMillis: 300000
+            # 配置一个连接在池中最大生存的时间，单位是毫秒
+            maxEvictableIdleTimeMillis: 900000
+            # 配置检测连接是否有效
+            validationQuery: SELECT 1 FROM DUAL
+            testWhileIdle: true
+            testOnBorrow: false
+            testOnReturn: false
+            webStatFilter: 
+                enabled: true
+            statViewServlet:
+                enabled: true
+                # 设置白名单，不填则允许所有访问
+                allow:
+                url-pattern: /druid/*
+                # 控制台管理用户名和密码
+                login-username: 
+                login-password: 
+            filter:
+                stat:
+                    enabled: true
+                    # 慢SQL记录
+                    log-slow-sql: true
+                    slow-sql-millis: 1000
+                    merge-sql: true
+                wall:
+                    config:
+                        multi-statement-allow: true
+    # redis
+    redis:
+      host: localhost
+      database: 1
+      port: 6379
+
+fdfs:
+  so-timeout: 1501  # 超时时间
+  connect-timeout: 601  # 连接超时时间
+  thumb-image:  # 缩略图
+    width: 60
+    height: 60
+  tracker-list:  # tracker地址：你的虚拟机服务器地址+端口（默认是22122）
+    - localhost:22122
+
+aliyun:
+  oss:
+    endPoint: oss-cn-beijing.aliyuncs.com
+    url: https://platform-application.oss-cn-beijing.aliyuncs.com/
+    accessKeyId: xxx
+    accessKeySecret: xxx
+    bucketName: xxx
+  sms:
+    accessKeyId: xxx
+    accessKeySecret: xxx
+    signName: 微本地
+  mail:
+    accessKeyId: xxx #邮件服务 accessKeyId
+    accessKeySecret: xxx #邮件服务 accessKeySecret
+    accountName: xxx #邮件服务 发信地址
+    regionId: cn-hangzhou #邮件服务 区域Id
+    sendPersonName: xxx #邮件服务 发信人昵称(程序无法正常读取中文，若是中文应写到程序中)
+    addressType: 1 #邮件服务  取值范围 0~1: 0 为随机账号；1 为发信地址
+    tagName: xxx #邮件服务 控制台创建的标签
+    replyToAddress: false #邮件服务 回信地址
+    toAddress:  #邮件服务  目标地址
+# 微信配置
+wechat:
+  spbillCreateIp: 127.0.0.1
+  apiKey: xxx
+  mchId: xxx
+  appID: xxx
+  appSecret: xxx
