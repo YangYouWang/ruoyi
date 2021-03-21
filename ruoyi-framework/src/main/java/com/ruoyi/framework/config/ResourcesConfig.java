@@ -58,16 +58,4 @@ public class ResourcesConfig implements WebMvcConfigurer
         registry.addInterceptor(repeatSubmitInterceptor).addPathPatterns("/**");
         registry.addInterceptor(restApiInteceptor).addPathPatterns("/api/**");
     }
-
-    /**
-     * 跨域
-     */
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowCredentials(true)
-                .allowedMethods("GET", "POST", "DELETE", "PUT","PATCH")
-                .maxAge(3600);
-    }
 }
